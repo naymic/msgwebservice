@@ -2,6 +2,7 @@
 
 namespace App\JResponse;
 use App\Exceptions\MyException;
+use App\JResponse\JsonResponseItem;
 
 class JSonResponse{
 	

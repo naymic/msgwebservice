@@ -33,6 +33,7 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase{
         $request->setAppToken("msgIstSoCool!-");
         $request->setModulId(1);
         $request->setRequItems(array(1,2,3));
+        $request->setRequItemsReplace(array(array(),array(),array()));
         return $request;
     }
 

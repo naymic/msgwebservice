@@ -27,10 +27,44 @@ class JsonTest extends TestCase {
      function testJsonRequest(){
         $response = new JsonResponse();
         $msgController = new MessageController();
-        $json = '{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applang":"pt","requitems":[1,2,3]}';
+        $json = '{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applang":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}';
        $msgController->processRequest($json, $response);
 
-       print_r($response);
+       self::assertTrue($response->getSuccess());
+       self::assertEquals(3, count($response->getResponseItems()));
+       self::assertEquals(0, count($response->getHtmlErrorCodes()));
+       self::assertEquals(0, count($response->getErrors()));
+     }
+
+
+    function testIncompleteJsonRequest(){
+        $response = new JsonResponse();
+        $msgController = new MessageController();
+        $json = '{"appid":1,"appoken":"msgIstSoCool!-","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}';
+        $msgController->processRequest($json, $response);
+
+        self::assertFalse($response->getSuccess());
+        self::assertEquals(0, count($response->getResponseItems()));
+        self::assertEquals(2, count($response->getHtmlErrorCodes()));
+        self::assertEquals(2, count($response->getErrors()));
+
+        self::assertEquals(400, $response->getHtmlErrorCodes()[0]);
+        self::assertEquals("Please verifiy your request, it doesn't contains: apptoken", $response->getErrors()[0]);
+        self::assertEquals(400, $response->getHtmlErrorCodes()[1]);
+        self::assertEquals("Please verifiy your request, it doesn't contains: applang", $response->getErrors()[1]);
+
+    }
+
+    function testReplaceJsonRequest(){
+        $response = new JsonResponse();
+        $msgController = new MessageController();
+        $json = '{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applang":"pt","requitems":[1,2,43],"requitemsreplace":[[],[],["test1", "test2"]]}';
+        $msgController->processRequest($json, $response);
+
+        self::assertTrue($response->getSuccess());
+        self::assertEquals(3, count($response->getResponseItems()));
+        self::assertEquals("This is a test test1 replace test2 message", $response->getResponseItems()[2]->getMsg());
+
     }
 
 

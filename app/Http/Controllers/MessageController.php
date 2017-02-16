@@ -9,6 +9,7 @@ use App\Language;
 use App\JRequest\JsonRequest;
 use App\JResponse\JSonResponse;
 use App\Exceptions\RequestNotValidException;
+use App\Providers\CheckClassProvider;
 use App\V_Message;
 use App\Http\Controllers\Auth\AppLoginController;
 use Nikapps\Pson\Pson;
@@ -20,11 +21,18 @@ class MessageController extends Controller {
     function processRequest($request, JsonResponse &$jresponse) {
         try {
             $p = new Pson();
-            $jrequest = $p->fromJson("App\JRequest\JsonRequest", $request);
-            $jrequest = ClassChanger::changeClass($jrequest, "App\JRequest\JsonRequest");
+
+            CheckClassProvider::checkJsontoJsonRequest($jresponse, $request);
+            if($jresponse->getSuccess()) {
+
+                $jrequest = $p->fromJson("App\JRequest\JsonRequest", $request);
 
 
-            $this->getMessages($jrequest, $jresponse);
+                $jrequest = ClassChanger::changeClass($jrequest, "App\JRequest\JsonRequest");
+
+
+                $this->getMessages($jrequest, $jresponse);
+            }
             return $jresponse;
 
         } catch (Exception $e) {
@@ -67,6 +75,20 @@ class MessageController extends Controller {
     }
 
     public static function getInternalMessage($lang, $msgid){
+
+        if(is_numeric($lang)) {
+            $langages = Language::all();
+            foreach ($langages as $language){
+                if($lang == $language->id){
+                    $lang = $language->lang_code;
+                    break;
+                }
+            }
+            if(is_numeric($lang)){
+                $lang = "pt";
+            }
+        }
+
         return self::getMessage(2,2, $lang, $msgid);
     }
 
@@ -91,12 +113,12 @@ class MessageController extends Controller {
             }
         }
 
-        foreach($messages as $message) {
+        foreach($messages as $key => $message) {
             if (!in_array($message->idmsg, $idsnotfound)) {
 
                 $item = new JsonResponseItem();
                 $item->setIdmsg($message->idmsg);
-                $item->setMsg($message->message);
+                $item->setMsg($message->message, $request->getRequItemsReplace()[$key]);
                 $item->setType($message->type);
                 $response->addResponseItem($item);
             }
@@ -128,9 +150,13 @@ class MessageController extends Controller {
     }
 
 
-    private static function findLang($lang){
-       $lang = Language::where('lang_code', $lang)->first();
-       return $lang->count == 1;
+    private static function findLang($lang) {
+        if (isset($lang)) {
+            $lang = Language::where('lang_code', $lang)->first();
+            return $lang->count == 1;
+        }else{
+            throw new RequestNotValidException(MessageController::getInternalMessage("en",10));
+        }
     }
 
 

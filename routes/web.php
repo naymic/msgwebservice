@@ -32,7 +32,11 @@ Route::get('/{request}', function ($request) {
 
     $jresponse = $msgController->processRequest($request, $jresponse);
 
-    return response()->json($jresponse);
+    if(isset($jresponse->getHtmlErrorCodes()[0])) {
+        return response()->json($jresponse, $jresponse->getHtmlErrorCodes()[0]);
+    }else{
+        return response()->json($jresponse);
+    }
 });
 
 Route::get('/', function(){

@@ -8,7 +8,9 @@ class JsonRequest{
 	private $appid;
 	private $modulid;
 	private $applang;
+	
 	private $requitems = array();
+	private $requitemsreplace = array();
 
 	
 
@@ -56,7 +58,14 @@ class JsonRequest{
 	public function getRequItems(){
 		return $this->requitems;
 	}
-	
+
+    public function setRequItemsReplace($requitemsreplace){
+        $this->requitemsreplace =$requitemsreplace;
+    }
+
+    public function getRequItemsReplace(){
+        return $this->requitemsreplace;
+    }
 	
 	
 	
