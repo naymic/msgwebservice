@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'Message WebService',
 
     /*
     |--------------------------------------------------------------------------
@@ -172,11 +172,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        MessageWebService\Providers\AppServiceProvider::class,
+        MessageWebService\Providers\AuthServiceProvider::class,
+        // MessageWebService\Providers\BroadcastServiceProvider::class,
+        MessageWebService\Providers\EventServiceProvider::class,
+        MessageWebService\Providers\RouteServiceProvider::class,
 
     ],
 

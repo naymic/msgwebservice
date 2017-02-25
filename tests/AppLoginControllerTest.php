@@ -3,12 +3,12 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Http\Controllers\MessageController;
-use App\V_Message;
-use App\JRequest\JsonRequest;
-use App\JResponse\JsonResponse;
-use App\Http\Controllers\Auth\AppLoginController;
-use App\Exceptions\MyException;
+use MessageWebService\Http\Controllers\MessageController;
+use MessageWebService\V_Message;
+use MessageWebService\JRequest\JsonRequest;
+use MessageWebService\JResponse\JsonResponse;
+use MessageWebService\Http\Controllers\Auth\AppLoginController;
+use MessageWebService\Exceptions\MyException;
 
 
 class AppLoginControllerTest extends TestCase

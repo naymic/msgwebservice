@@ -6,17 +6,24 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateApplicationsTable extends Migration
 {
+
+    public function __construct() {
+        $this->setTablename("applications");
+    }
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('applications', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-        });
+    public function up(){
+        if (!Schema::hasTable($this->getTablename())) {
+            Schema::create($this->getTablename(), function (Blueprint $table) {
+                $table->increments('id');
+                $table->char('token', 40);
+                $table->string('app_name', 75);
+            });
+        }
     }
 
     /**
@@ -26,6 +33,6 @@ class CreateApplicationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('applications');
+        Schema::dropIfExists($this->getTablename());
     }
 }

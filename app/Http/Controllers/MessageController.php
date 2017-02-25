@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MessageWebService\Http\Controllers;
 
-use App\Exceptions\MessageNotFoundException;
-use App\Exceptions\MyException;
-use App\JResponse\JsonResponseItem;
-use App\Language;
-use App\JRequest\JsonRequest;
-use App\JResponse\JSonResponse;
-use App\Exceptions\RequestNotValidException;
-use App\Providers\CheckClassProvider;
-use App\V_Message;
-use App\Http\Controllers\Auth\AppLoginController;
+use MessageWebService\Exceptions\MessageNotFoundException;
+use MessageWebService\Exceptions\MyException;
+use MessageWebService\JResponse\JsonResponseItem;
+use MessageWebService\Language;
+use MessageWebService\JRequest\JsonRequest;
+use MessageWebService\JResponse\JSonResponse;
+use MessageWebService\Exceptions\RequestNotValidException;
+use MessageWebService\Providers\CheckClassProvider;
+use MessageWebService\V_Message;
+use MessageWebService\Http\Controllers\Auth\AppLoginController;
 use Nikapps\Pson\Pson;
-use App\Providers\ClassChanger;
+use MessageWebService\Providers\ClassChanger;
 
 
 class MessageController extends Controller {
@@ -25,10 +25,10 @@ class MessageController extends Controller {
             CheckClassProvider::checkJsontoJsonRequest($jresponse, $request);
             if($jresponse->getSuccess()) {
 
-                $jrequest = $p->fromJson("App\JRequest\JsonRequest", $request);
+                $jrequest = $p->fromJson("MessageWebService\JRequest\JsonRequest", $request);
 
 
-                $jrequest = ClassChanger::changeClass($jrequest, "App\JRequest\JsonRequest");
+                $jrequest = ClassChanger::changeClass($jrequest, "MessageWebService\JRequest\JsonRequest");
 
 
                 $this->getMessages($jrequest, $jresponse);
@@ -97,7 +97,7 @@ class MessageController extends Controller {
      * @return mixed
      */
     public function getMessagesFromRequest(JSonResponse &$response, JsonRequest $request) {
-        $messages = \App\V_Message::where([['appid', $request->getAppId()], ['lang', $request->getAppLang()], ['modid', $request->getModulId()]
+        $messages = \MessageWebService\V_Message::where([['appid', $request->getAppId()], ['lang', $request->getAppLang()], ['modid', $request->getModulId()]
 
         ])->wherein('idmsg', $request->getRequItems())->get();
 

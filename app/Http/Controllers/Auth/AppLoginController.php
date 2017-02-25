@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace MessageWebService\Http\Controllers\Auth;
 
-use App\Application;
-use App\Exceptions\AppNotFoundException;
-use App\Exceptions\RequestNotValidException;
-use App\Exceptions\AutenticationException;
-use App\Http\Controllers\MessageController;
-use App\JRequest\JsonRequest;
-use App\JResponse\JsonResponse;
+use MessageWebService\Application;
+use MessageWebService\Exceptions\AppNotFoundException;
+use MessageWebService\Exceptions\RequestNotValidException;
+use MessageWebService\Exceptions\AutenticationException;
+use MessageWebService\Http\Controllers\MessageController;
+use MessageWebService\JRequest\JsonRequest;
+use MessageWebService\JResponse\JsonResponse;
 
 class AppLoginController{
 	

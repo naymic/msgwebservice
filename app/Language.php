@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace MessageWebService;
 
 use Illuminate\Database\Eloquent\Model;
 

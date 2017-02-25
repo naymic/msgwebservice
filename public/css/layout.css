@@ -1,0 +1,16 @@
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 0px) {
+    .form-left{
+        padding: 5px;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    .form-left{
+        float:left;
+        padding: 10px;
+    }
+}
+
+

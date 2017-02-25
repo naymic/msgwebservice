@@ -10,12 +10,30 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-use Nikapps\Pson\Pson;
-use \App\JRequest\JsonRequest;
-use \App\JResponse\JsonResponse;
-use \App\Providers\ClassChanger;
-use \App\Exceptions\MyException;
-use App\Http\Controllers\MessageController;
+
+use \MessageWebService\JResponse\JSonResponse;
+use MessageWebService\Exceptions\RequestNotValidException;
+use MessageWebService\Http\Controllers\MessageController;
+
+
+Auth::routes();
+
+Route::group(['middleware' =>  'auth'], function(){
+    Route::get('/message', 'CrudMessageController@index');
+    Route::get('/message/create', 'CrudMessageController@create');
+    Route::post('/message', 'CrudMessageController@store');
+    Route::get('/message/{id}', 'CrudMessageController@show');
+    Route::get('/message/{id}/edit', 'CrudMessageController@edit');
+    Route::put('/message/{id}', 'CrudMessageController@update');
+    Route::delete('/message/{id}', 'CrudMessageController@destroy');
+
+    //Ajax
+    Route::get('/ajax/message/application/{id}',  'CrudMessageController@ajaxApplication');
+
+});
+
+
+Route::get('/home', 'HomeController@index');
 
 
 Route::get('/phpinfo', function(){
@@ -40,7 +58,13 @@ Route::get('/{request}', function ($request) {
 });
 
 Route::get('/', function(){
-    return "hello world Laravel";
+    $jresponse = new JSonResponse();
+    $jresponse->addError(new RequestNotValidException(MessageController::getInternalMessage('en', 10)));
+
+    return response()->json($jresponse, $jresponse->getHtmlErrorCodes()[0]);
 });
+
+
+
 
 

@@ -3,8 +3,8 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Http\Controllers\MessageController;
-use App\JResponse\JSonResponse;
+use MessageWebService\Http\Controllers\MessageController;
+use MessageWebService\JResponse\JSonResponse;
 use Nikapps\Pson\Pson;
 
 class JsonTest extends TestCase {
@@ -15,7 +15,7 @@ class JsonTest extends TestCase {
      */
     public function testPsonTransform(){
         $p = new Pson();
-        $request = $p->fromJson('App\JRequest\JsonRequest','{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applang":"pt","requitems":[1,2,3]}');
+        $request = $p->fromJson('MessageWebService\JRequest\JsonRequest','{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applang":"pt","requitems":[1,2,3]}');
         self::assertEquals(1, $request->getAppId());
         self::assertEquals("msgIstSoCool!-", $request->getAppToken());
         self::assertEquals(1, $request->getModulId());

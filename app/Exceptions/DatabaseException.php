@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions;
+namespace MessageWebService\Exceptions;
 
 class DatabaseException extends MyException{
 	

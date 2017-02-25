@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Providers;
+namespace MessageWebService\Providers;
 
-use App\Http\Controllers\MessageController;
+use MessageWebService\Http\Controllers\MessageController;
 use Illuminate\Support\ServiceProvider;
-use App\JResponse\JSonResponse;
+use MessageWebService\JResponse\JSonResponse;
 use ReflectionClass;
-use App\Exceptions\RequestNotValidException;
+use MessageWebService\Exceptions\RequestNotValidException;
 
 class CheckClassProvider extends ServiceProvider
 {
@@ -32,7 +32,7 @@ class CheckClassProvider extends ServiceProvider
 
 
     public static function checkJsontoJsonRequest(JsonResponse &$response, $jsonString){
-        $reflector = new ReflectionClass('\App\JRequest\JsonRequest');
+        $reflector = new ReflectionClass('\MessageWebService\JRequest\JsonRequest');
 
         $properties = $reflector->getDefaultProperties();
         foreach ($properties as $key => $value){

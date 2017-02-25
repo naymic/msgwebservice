@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions;
+namespace MessageWebService\Exceptions;
 
 class AppNotFoundException extends MyException{
 	

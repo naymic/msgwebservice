@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Exceptions;
-use App\Http\Controllers\MessageController;
+namespace MessageWebService\Exceptions;
+use MessageWebService\Http\Controllers\MessageController;
 
 class AutenticationException extends MyException{
 	

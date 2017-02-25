@@ -1,5 +1,5 @@
 <?php
-namespace App\Exceptions;
+namespace MessageWebService\Exceptions;
 
 class RequestNotValidException extends MyException{
 	

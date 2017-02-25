@@ -1,6 +1,6 @@
 <?php
 
-namespace App\JResponse;
+namespace MessageWebService\JResponse;
 
 class JsonResponseItem{
 	
@@ -35,7 +35,7 @@ class JsonResponseItem{
 	public function setMsg($msg, $replace = array()){
 		if(count($replace) != 0){
 		    foreach ($replace as $key => $rpl){
-		        $msg = str_replace("{{". $key ."}}", $rpl, $msg);
+		        $msg = str_replace("[[". $key ."]]", $rpl, $msg);
             }
         }
 	    $this->msg=$msg;

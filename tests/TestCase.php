@@ -1,7 +1,7 @@
 <?php
 
 use \Illuminate\Foundation\Testing\ParentTestCase;
-use App\JRequest\JsonRequest;
+use MessageWebService\JRequest\JsonRequest;
 
 abstract class TestCase extends Illuminate\Foundation\Testing\TestCase{
     /**

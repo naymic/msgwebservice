@@ -4,19 +4,25 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModulesTable extends Migration
-{
+class CreateModulesTable extends Migration {
+
+    public  function __construct() {
+        $this->setTablename('modules');
+    }
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('modules', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-        });
+    public function up() {
+        if(!Schema::hasTable($this->getTablename())) {
+            Schema::create($this->getTablename(), function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('modul_name', 45);
+                $table->foreign('applications_id')->references('id')->on('applications');
+            });
+        }
     }
 
     /**
@@ -26,6 +32,6 @@ class CreateModulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists($this->getTablename());
     }
 }

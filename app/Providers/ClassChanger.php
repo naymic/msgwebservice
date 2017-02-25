@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace MessageWebService\Providers;
 
-use App\JRequest\JsonRequest;
+use MessageWebService\JRequest\JsonRequest;
 
 class ClassChanger {
 	/**
