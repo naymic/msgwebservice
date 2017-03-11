@@ -76,7 +76,6 @@ class DatabaseTest extends TestCase {
 
         self::assertFalse($response->getSuccess());
         self::assertEquals("Linguagem não existe, por favor informa apenas o código com duas letras! Ex.: PT", $response->getErrors()[0]);
-
     }
 
     public function testEmptyRequest(){
@@ -84,12 +83,20 @@ class DatabaseTest extends TestCase {
         $request = self::getRequest();
         $request->setRequItems(array());
 
+
+        //Check empty message id array
         $msgController = new MessageController();
         $msgController->getMessages($request, $response);
 
-       var_dump($response);
+        self::assertTrue($response->getSuccess());
+        self::assertEquals("Não existem mensagens para buscar.", $response->getInfoMessages()[0]);
 
+        //Check null request items
+        $response = new JsonResponse();
+        $request->setRequItems(null);
+        $msgController->getMessages($request, $response);
+
+        self::assertTrue($response->getSuccess());
+        self::assertEquals("Não existem mensagens para buscar.", $response->getInfoMessages()[0]);
     }
-
-
 }
