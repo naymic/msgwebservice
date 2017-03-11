@@ -2,6 +2,7 @@
 
 namespace MessageWebService\Http\Controllers;
 
+use MessageWebService\Exceptions\EmptyRequestException;
 use MessageWebService\Exceptions\MessageNotFoundException;
 use MessageWebService\Exceptions\MyException;
 use MessageWebService\JResponse\JsonResponseItem;
@@ -9,6 +10,7 @@ use MessageWebService\Language;
 use MessageWebService\JRequest\JsonRequest;
 use MessageWebService\JResponse\JSonResponse;
 use MessageWebService\Exceptions\RequestNotValidException;
+use MessageWebService\Module;
 use MessageWebService\Providers\CheckClassProvider;
 use MessageWebService\V_Message;
 use MessageWebService\Http\Controllers\Auth\AppLoginController;
@@ -52,6 +54,8 @@ class MessageController extends Controller {
 
 
             return $this->getMessagesFromRequest($response, $request);
+        }catch (EmptyRequestException $ere){
+            $response->addInfoMessage($ere->getMessage());
         }catch(MyException $afe){
             $response->addError($afe);
         }
@@ -68,7 +72,7 @@ class MessageController extends Controller {
         ])->get();
 
         if(empty($message->first())){
-            throw new MessageNotFoundException(MessageController::getInternalMessage($lang, 8). " ID: ". $msgid);
+            throw new MessageNotFoundException(self::getInternalMessage($lang, 8). " ID: ". $msgid);
         }
 
         return $message->first()->message;
@@ -77,16 +81,7 @@ class MessageController extends Controller {
     public static function getInternalMessage($lang, $msgid){
 
         if(is_numeric($lang)) {
-            $langages = Language::all();
-            foreach ($langages as $language){
-                if($lang == $language->id){
-                    $lang = $language->lang_code;
-                    break;
-                }
-            }
-            if(is_numeric($lang)){
-                $lang = "pt";
-            }
+            $lang = MessageController::getLangFromInt($lang);
         }
 
         return self::getMessage(2,2, $lang, $msgid);
@@ -97,6 +92,7 @@ class MessageController extends Controller {
      * @return mixed
      */
     public function getMessagesFromRequest(JSonResponse &$response, JsonRequest $request) {
+
         $messages = \MessageWebService\V_Message::where([['appid', $request->getAppId()], ['lang', $request->getAppLang()], ['modid', $request->getModulId()]
 
         ])->wherein('idmsg', $request->getRequItems())->get();
@@ -129,19 +125,37 @@ class MessageController extends Controller {
             }
         }
 
+
     }
 
     private function validateRequest(JsonRequest $request){
-        if(MessageController::findLang($request->getAppLang())){
-            throw new RequestNotValidException(MessageController::getInternalMessage(3, 2));
+        if(empty($request->getAppId())){
+            throw new RequestNotValidException(MessageController::getInternalMessage(2,15));
         }
 
-        if(!is_numeric($request->getAppId())){
+        if(empty($request->getModulId())){
+            throw new RequestNotValidException(MessageController::getInternalMessage(2,16));
+        }
+
+        if( empty($request->getRequItems()) || count($request->getRequItems()) == 0){
+            throw new EmptyRequestException(MessageController::getInternalMessage(2,17));
+        }
+
+
+        if(strlen($request->getAppLang()) !=2 || !MessageController::findLang($request->getAppLang())){
+            throw new RequestNotValidException(MessageController::getInternalMessage(2, 14));
+        }
+
+        if($request->getAppId() == null || !is_numeric($request->getAppId())){
             throw new RequestNotValidException(MessageController::getInternalMessage($request->getAppLang(), 2));
         }
 
         if(!is_numeric($request->getModulId())){
             throw new RequestNotValidException(MessageController::getInternalMessage($request->getAppLang(), 3));
+        }else{
+            if(!$this->checkModulId($request->getModulId())){
+                throw new RequestNotValidException(MessageController::getInternalMessage($request->getAppLang(), 13 ));
+            }
         }
 
         foreach ($request->getRequItems() as $msgid){
@@ -158,11 +172,32 @@ class MessageController extends Controller {
     private static function findLang($lang) {
         if (isset($lang)) {
             $lang = Language::where('lang_code', $lang)->first();
-            return $lang->count == 1;
+            return isset($lang);
         }else{
             throw new RequestNotValidException(MessageController::getInternalMessage("en",10));
         }
     }
+
+
+    private function checkModulId($appid){
+            $module = Module::where('applications_id', $appid)->first();
+            return isset($module);
+    }
+
+    private static function getLangFromInt(int $langCode){
+        $langages = Language::all();
+        $lang = "pt";
+        foreach ($langages as $language){
+            if($langCode == $language->id){
+                $lang = $language->lang_code;
+                break;
+            }
+        }
+
+        return $lang;
+    }
+
+
 
 
 }

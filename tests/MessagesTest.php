@@ -66,5 +66,30 @@ class DatabaseTest extends TestCase {
         self::assertEquals("Mensagem não encontrado. ID: -2", $response->getErrors()[1]);
     }
 
+    public function testGetUnexistentLangFromDatabase(){
+        $response = new JsonResponse();
+        $request = self::getRequest();
+        $request->setAppLang("asjkl");
+
+        $msgController = new MessageController();
+        $msgController->getMessages($request, $response);
+
+        self::assertFalse($response->getSuccess());
+        self::assertEquals("Linguagem não existe, por favor informa apenas o código com duas letras! Ex.: PT", $response->getErrors()[0]);
+
+    }
+
+    public function testEmptyRequest(){
+        $response = new JsonResponse();
+        $request = self::getRequest();
+        $request->setRequItems(array());
+
+        $msgController = new MessageController();
+        $msgController->getMessages($request, $response);
+
+       var_dump($response);
+
+    }
+
 
 }

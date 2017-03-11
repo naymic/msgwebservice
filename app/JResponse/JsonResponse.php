@@ -8,6 +8,7 @@ class JSonResponse{
 	
 	public $success;
 	public $responseItems = array();
+    public $infoMessages = array();
 	public $errorMsgs = array();
 	public $htmlErrorCodes = array();
 	
@@ -16,12 +17,14 @@ class JSonResponse{
 	}
 	
 
+	public function addInfoMessage($message){
+		$this->infoMessages[] = $message;
+	}
 	
 	public function addError(MyException $error){
 		$this->setSuccess(false);
 		$this->errorMsgs[] = $error->getMessage();
-		$this->htmlErrorCodes[] = $error->getHttpErrorCode();		
-		
+		$this->htmlErrorCodes[] = $error->getHttpErrorCode();
 	}
 	
 
@@ -44,6 +47,14 @@ class JSonResponse{
 	
 	public function getResponseItems(){
 		return $this->responseItems;
+	}
+
+	public function setInfoMessages($infoMessages){
+		$this->infoMessages =$infoMessages;
+	}
+
+	public function getInfoMessages(){
+		return $this->infoMessages;
 	}
 	
 	public function setErrors( $errors){
