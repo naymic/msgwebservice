@@ -50,7 +50,7 @@
 
         </table>
         <div>
-            {{$messages->links()}}
+            {{$messages->appends(request()->input())->links()}}
         </div>
     </div>
 
