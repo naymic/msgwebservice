@@ -10,6 +10,7 @@
                 <div class="panel-body">
                     <div><a href="/message">List all Messages</a></div>
                     <div><a href="/message/create/">Create a new Message</a></div>
+                    <div>{{$token}}</div>
                 </div>
             </div>
         </div>

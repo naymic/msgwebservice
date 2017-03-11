@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-    <script src="/js/crud-message.js"></script>
+    <script src="{{asset('/js/crud-message.js')}}"></script>
 @endsection
 @section('content')
     @include('messages.inner_form')

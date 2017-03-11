@@ -118,7 +118,12 @@ class MessageController extends Controller {
 
                 $item = new JsonResponseItem();
                 $item->setIdmsg($message->idmsg);
-                $item->setMsg($message->message, $request->getRequItemsReplace()[$key]);
+
+                if(isset($request->getRequItemsReplace()[$key])) {
+                    $item->setMsg($message->message, $request->getRequItemsReplace()[$key]);
+                }else{
+                    $item->setMsg($message->message);
+                }
                 $item->setType($message->type);
                 $response->addResponseItem($item);
             }

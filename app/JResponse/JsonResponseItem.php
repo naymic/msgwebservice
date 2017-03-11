@@ -6,12 +6,7 @@ class JsonResponseItem{
 	
 	public $idmsg;
 	public $type;
-	public $msg;
-
-
-    public function replace($msg, $replace = array()){
-        $responseItem->setMsg(str_replace("{{". $placeholder ."}}",$replace, $responseItem->getMsg()));
-    }
+	public $message;
 
 	
 	### Setters & Getters ###
@@ -38,11 +33,11 @@ class JsonResponseItem{
 		        $msg = str_replace("[[". $key ."]]", $rpl, $msg);
             }
         }
-	    $this->msg=$msg;
+	    $this->message=$msg;
 	}
 	
 	public function getMsg(){
-		return $this->msg;
+		return $this->message;
 	}
 	
 }

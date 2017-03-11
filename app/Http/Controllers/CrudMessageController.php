@@ -60,7 +60,9 @@ class CrudMessageController extends Controller
                                         'message' => $message,
                                         'method' => 'get',
                                         'submit_value'=> 'Search',
-                                        'url_add' => '']);
+                                        'url' => $request->url(),
+                                       'url_add' => '']
+                                        );
     }
 
     /**
@@ -96,23 +98,28 @@ class CrudMessageController extends Controller
         $type = $request->input('type',  'null');
 
 
-            $msg = new Message();
+        $msg = new Message();
 
+        $msgid = Message::where('modules_id', $modul_id)->orderBy('idmsg', 'DESC')->first();
+        if(!isset($msgid) ){
+            $newmsgid = 1;
+        }else{
+            $newmsgid = $msgid->idmsg+1;
+        }
 
-            $msgid = Message::where('modules_id', $modul_id)->orderBy('idmsg', 'DESC')->firstOrFail();
-            $msg->idmsg  = $msgid->idmsg+1;
-            $msg->modules_id = $modul_id;
-            $lang = Language::where('lang_code', $lang_code)->firstOrFail();
-            $msg->languages_id =$lang->id;
-            $type = MessageType::where('type',$type)->firstOrFail();
-            $msg->message_types_id = $type->id;
-            $msg->message = $message;
+        $msg->idmsg  = $newmsgid;
+        $msg->modules_id = $modul_id;
+        $lang = Language::where('lang_code', $lang_code)->firstOrFail();
+        $msg->languages_id =$lang->id;
+        $type = MessageType::where('type',$type)->firstOrFail();
+        $msg->message_types_id = $type->id;
+        $msg->message = $message;
 
-            $msg->save();
+        $msg->save();
 
-            return view('messages/saved',['message' => MessageController::getInternalMessage(3, 11),
-                                          'button_value' => 'Back to Messages',
-                                          'url' => '/message/']);
+        return view('messages/saved',['message' => MessageController::getInternalMessage(3, 11),
+                                      'button_value' => 'Back to Messages',
+                                      'url' => '/message/']);
     }
 
     /**
@@ -181,7 +188,7 @@ class CrudMessageController extends Controller
             $msg->message_types_id = $type->id;
             $msg->message = $message;
 
-            $msg->where('id', $id)->update(['idmsg' => $msgid->msgid+1,
+            $msg->where('id', $id)->update([
                                        'modules_id' => $modul_id,
                                        'languages_id' => $lang->id,
                                        'message_types_id' => $type->id,

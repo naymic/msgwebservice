@@ -34,6 +34,7 @@ Route::group(['middleware' =>  'auth'], function(){
 
 
 Route::get('/home', 'HomeController@index');
+Route::get('/home/{token}', 'HomeController@index');
 
 
 Route::get('/phpinfo', function(){
@@ -47,6 +48,8 @@ Route::get('/admin', function(){
 Route::get('/{request}', function ($request) {
     $jresponse = new JSonResponse();
     $msgController = new MessageController();
+
+
 
     $jresponse = $msgController->processRequest($request, $jresponse);
 
