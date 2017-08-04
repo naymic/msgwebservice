@@ -184,7 +184,7 @@ class MessageController extends Controller {
             return isset($module);
     }
 
-    private static function getLangFromInt(int $langCode){
+    private static function getLangFromInt($langCode){
         $langages = Language::all();
         $lang = "pt";
         foreach ($langages as $language){

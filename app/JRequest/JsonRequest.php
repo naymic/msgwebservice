@@ -8,7 +8,8 @@ class JsonRequest{
 	private $appid;
 	private $modulid;
 	private $applang;
-	
+
+	private $requitemstext = array();
 	private $requitems = array();
 	private $requitemsreplace = array();
 

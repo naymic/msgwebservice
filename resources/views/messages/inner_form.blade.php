@@ -7,6 +7,11 @@
             <input class="form-control" type="text" name="message" id="message" value="{{$message}}" />
         </div>
 
+        <div class="col-md-1 col-sm-6">
+            <div><label class="control-label">Token</label></div>
+            <input class="form-control" type="text" name="token" id="token" value="{{$token}}" />
+        </div>
+
         <div class="col-md-2 col-sm-6">
             <div><label class="control-label">Application</label></div>
             <select class="form-control" name="application_id" id="application_id">
