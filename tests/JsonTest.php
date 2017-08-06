@@ -15,7 +15,7 @@ class JsonTest extends TestCase {
      */
     public function testPsonTransform(){
         $p = new Pson();
-        $request = $p->fromJson('MessageWebService\JRequest\JsonRequest','{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applang":"pt","requitems":[1,2,3]}');
+        $request = $p->fromJson('MessageWebService\JsonRequest\JsonRequest','{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applang":"pt","requitems":[1,2,3]}');
         self::assertEquals(1, $request->getAppId());
         self::assertEquals("msgIstSoCool!-", $request->getAppToken());
         self::assertEquals(1, $request->getModulId());
@@ -40,7 +40,7 @@ class JsonTest extends TestCase {
     function testIncompleteJsonRequest(){
         $response = new JsonResponse();
         $msgController = new MessageController();
-        $json = '{"appid":1,"appoken":"msgIstSoCool!-","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}';
+        $json = '{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}';
         $msgController->processRequest($json, $response);
 
         self::assertFalse($response->getSuccess());

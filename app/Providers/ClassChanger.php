@@ -19,7 +19,6 @@ class ClassChanger {
 			$obj = unserialize ( preg_replace ( "/^O:[0-9]+:\"[^\"]+\":/i", "O:" . strlen ( $new_class ) . ":\"" . $new_class . "\":", serialize ( $obj ) ) );
 
 		}
-		return $obj;
 	}
 }
 

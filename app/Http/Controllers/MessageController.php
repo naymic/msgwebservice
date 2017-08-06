@@ -24,16 +24,18 @@ class MessageController extends Controller {
         try {
             $p = new Pson();
 
+            $request = iconv(mb_detect_encoding($request, mb_detect_order(), true), "UTF-8", $request);
             CheckClassProvider::checkJsontoJsonRequest($jresponse, $request);
+
             if($jresponse->getSuccess()) {
 
-                $jrequest = $p->fromJson("MessageWebService\JRequest\JsonRequest", $request);
+                $jrequest = $p->fromJson("MessageWebService\JsonRequest\JsonRequest",$request);
 
-
-                $jrequest = ClassChanger::changeClass($jrequest, "MessageWebService\JRequest\JsonRequest");
-
-
-                $this->getMessages($jrequest, $jresponse);
+                if(!is_empty($jrequest)) {
+                    $this->getMessages($jrequest, $jresponse);
+                }else{
+                    throw new RequestNotValidException();
+                }
             }
             return $jresponse;
 
