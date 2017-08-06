@@ -61,7 +61,8 @@ class CrudMessageController extends Controller
                                         'method' => 'get',
                                         'submit_value'=> 'Search',
                                         'url' => $request->url(),
-                                       'url_add' => '']
+                                       'url_add' => '',
+                                        'token' => csrf_token()]
                                         );
     }
 

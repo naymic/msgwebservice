@@ -32,7 +32,7 @@ class CheckClassProvider extends ServiceProvider
 
 
     public static function checkJsontoJsonRequest(JsonResponse &$response, $jsonString){
-        $reflector = new ReflectionClass('\MessageWebService\JRequest\JsonRequest');
+        $reflector = new ReflectionClass('\MessageWebService\JsonRequest\JsonRequest');
 
         $properties = $reflector->getDefaultProperties();
         foreach ($properties as $key => $value){
