@@ -2,7 +2,7 @@
 
 namespace MessageWebService\Providers;
 
-use MessageWebService\JRequest\JsonRequest;
+use MessageWebService\JsonRequest\JsonRequest;
 
 class ClassChanger {
 	/**

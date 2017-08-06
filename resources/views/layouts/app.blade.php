@@ -11,10 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{asset('/css/layout.css')}}" rel="stylesheet">
-    <link href="{{asset('/css/app.css')}}" rel="stylesheet">
-    @yield('css')
-
+    <link href="{{URL::to('/')}}/css/app.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -22,12 +19,8 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    @yield('javascript')
-
 </head>
 <body>
-    <div id="_route" style="display: none">{{Request::method()}}</div>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -42,8 +35,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/home') }}">
-                        {{ config('app.name', 'Message Web Service') }}
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
 
@@ -69,13 +62,14 @@
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Logout</a>
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                    <li><a href='/message'>List Messages</a></li>
-                                    <li><a href="/message/create">Create Messages</a></li>
                                 </ul>
                             </li>
                         @endif
@@ -84,10 +78,10 @@
             </div>
         </nav>
 
-        <div style="padding-left: 10px; padding-right: 10px;">@yield('content')</div>
+        @yield('content')
     </div>
 
     <!-- Scripts -->
-    <script src="{{asset('/js/app.js')}}"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>

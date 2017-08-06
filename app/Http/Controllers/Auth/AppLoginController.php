@@ -7,8 +7,8 @@ use MessageWebService\Exceptions\AppNotFoundException;
 use MessageWebService\Exceptions\RequestNotValidException;
 use MessageWebService\Exceptions\AutenticationException;
 use MessageWebService\Http\Controllers\MessageController;
-use MessageWebService\JRequest\JsonRequest;
-use MessageWebService\JResponse\JsonResponse;
+use MessageWebService\JsonRequest\JsonRequest;
+use MessageWebService\JsonResponse\JsonResponse;
 
 class AppLoginController{
 	

@@ -1,6 +1,6 @@
 <?php
 
-namespace MessageWebService\JResponse;
+namespace MessageWebService\JsonResponse;
 
 class JsonResponseItem{
 	

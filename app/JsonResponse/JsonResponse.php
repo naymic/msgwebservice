@@ -1,8 +1,8 @@
 <?php
 
-namespace MessageWebService\JResponse;
+namespace MessageWebService\JsonResponse;
 use MessageWebService\Exceptions\MyException;
-use MessageWebService\JResponse\JsonResponseItem;
+use MessageWebService\JsonResponse\JsonResponseItem;
 
 class JSonResponse{
 	

@@ -8,9 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    <div><a href="/message">List all Messages</a></div>
-                    <div><a href="/message/create/">Create a new Message</a></div>
-                    <div>{{$token}}</div>
+                    You are logged in!
                 </div>
             </div>
         </div>

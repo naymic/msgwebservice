@@ -11,7 +11,7 @@
 |
 */
 
-use \MessageWebService\JResponse\JSonResponse;
+use MessageWebService\JsonResponse\JSonResponse;
 use MessageWebService\Exceptions\RequestNotValidException;
 use MessageWebService\Http\Controllers\MessageController;
 
@@ -71,3 +71,7 @@ Route::get('/', function(){
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

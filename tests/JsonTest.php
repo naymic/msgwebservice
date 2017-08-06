@@ -4,7 +4,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use MessageWebService\Http\Controllers\MessageController;
-use MessageWebService\JResponse\JSonResponse;
+use MessageWebService\JsonResponse\JSonResponse;
 use Nikapps\Pson\Pson;
 
 class JsonTest extends TestCase {

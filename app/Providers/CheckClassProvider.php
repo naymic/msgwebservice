@@ -4,7 +4,7 @@ namespace MessageWebService\Providers;
 
 use MessageWebService\Http\Controllers\MessageController;
 use Illuminate\Support\ServiceProvider;
-use MessageWebService\JResponse\JSonResponse;
+use MessageWebService\JsonResponse\JSonResponse;
 use ReflectionClass;
 use MessageWebService\Exceptions\RequestNotValidException;
 

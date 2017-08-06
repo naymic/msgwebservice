@@ -1,6 +1,6 @@
 <?php
 
-namespace MessageWebService\JRequest;
+namespace MessageWebService\JsonRequest;
 
 class JsonRequest{
 	
@@ -9,7 +9,7 @@ class JsonRequest{
 	private $modulid;
 	private $applang;
 
-	private $requitemstext = array();
+	//private $requitemstext = array();
 	private $requitems = array();
 	private $requitemsreplace = array();
 

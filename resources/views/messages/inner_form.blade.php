@@ -1,6 +1,6 @@
 
-    <form class="" action="/message{{$url_add}}" method="post" id="message-form" nam="message-form">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <form class="" action="{{URL::to('/')}}/message{{$url_add}}" method="post" id="message-form" nam="message-form">
+        {!! csrf_field() !!}
         {{ method_field($method) }}
         <div class="col-md-4 col-sm-12">
             <div><label class=" control-label">Message</label></div>

@@ -5,8 +5,8 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use MessageWebService\Http\Controllers\MessageController;
 use MessageWebService\V_Message;
-use MessageWebService\JRequest\JsonRequest;
-use MessageWebService\JResponse\JsonResponse;
+use MessageWebService\JsonRequest\JsonRequest;
+use MessageWebService\JsonResponse\JsonResponse;
 use MessageWebService\Http\Controllers\Auth\AppLoginController;
 use MessageWebService\Exceptions\MyException;
 

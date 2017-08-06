@@ -2,7 +2,7 @@
 
 namespace MessageWebService;
 
-use MessageWebService\JRequest\JsonRequest;
+use MessageWebService\JsonRequest\JsonRequest;
 use Illuminate\Database\Eloquent\Model;
 
 class V_Message extends Model{

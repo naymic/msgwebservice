@@ -21,8 +21,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($token)
+    public function index()
     {
-        return view('home', ['token' => crypt($token, "") ]);
+        return view('home');
     }
 }

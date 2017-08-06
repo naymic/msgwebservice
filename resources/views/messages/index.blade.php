@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('javascript')
-    <script src="/js/crud-message.js"></script>
+    <script src="{{URL::to('/')}}/js/crud-message.js"></script>
 @endsection
 
 @section('content')
     @include('messages.inner_form')
     <div class="col-md-1 col-sm-6">
         <div><label class="control-label">&nbsp;</label></div>
-        <button onclick="window.location.href='/message'" class="form-control ">Reset</button>
+        <button onclick="window.location.href='{{URL::to("/")}}/message'" class="form-control ">Reset</button>
     </div>
     <div>
         <table class="table">
@@ -34,10 +34,10 @@
                         <td>{{$message->type}}</td>
                         <td>{{$message->message}}</td>
                         <td>
-                            <button  onClick='location.href ="/message/{{$message->id}}/edit";' type="button" class="btn btn-default">Edit</button>
+                            <button  onClick='location.href ="{{URL::to('/')}}/message/{{$message->id}}/edit";' type="button" class="btn btn-default">Edit</button>
                         </td>
                         <td>
-                            <form  method="post" action="message/{{$message->id}}">
+                            <form  method="post" action="{{URL::to('/')}}message/{{$message->id}}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 {{ method_field('DELETE') }}
                                 <input type="submit" class="btn btn-danger" value="Delete" />
@@ -54,5 +54,5 @@
         </div>
     </div>
 
-    <div><a class="btn btn-success" href="/message/create/">Create a new Message</a> </div>
+    <div><a class="btn btn-success" href="{{URL::to('/')}}/message/create/">Create a new Message</a> </div>
 @endsection
