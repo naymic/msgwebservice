@@ -1,16 +1,13 @@
 
     <form class="" action="{{URL::to('/')}}/message{{$url_add}}" method="post" id="message-form" nam="message-form">
-        <input type="hidden" name="_token" value="{{$token}}">
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
         {{ method_field($method) }}
         <div class="col-md-4 col-sm-12">
             <div><label class=" control-label">Message</label></div>
             <input class="form-control" type="text" name="message" id="message" value="{{$message}}" />
         </div>
 
-        <div class="col-md-1 col-sm-6">
-            <div><label class="control-label">Token</label></div>
-            <input class="form-control" type="text" name="token" id="token" value="{{$token}}" />
-        </div>
+        
 
         <div class="col-md-2 col-sm-6">
             <div><label class="control-label">Application</label></div>
@@ -27,7 +24,7 @@
         </div>
         <div class="col-md-2 col-sm-6">
             <div><label class="control-label">Modul</label></div>
-            <select class="form-control" name="modul_id" id="modul_id">
+            <select class="form-control" name="modul_id" id="modul_id" onchange="">
                 <option value="null" >Choose</option>
                @include('messages.modules_form')
             </select>

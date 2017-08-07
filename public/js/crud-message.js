@@ -5,10 +5,10 @@
 $(document).ready(function(){
 
     $('#application_id').change(function(){
-
+        console.log('http://localhost/msgwebservice/public/ajax/message/application/'+$('#application_id').val());
         $.ajax({
             type: 'GET',
-            url: '/ajax/message/application/'+$('#application_id').val(),
+            url: 'http://localhost/msgwebservice/public/ajax/message/application/'+$('#application_id').val(),
             success: function (data) {
                 $('#modul_id').html(data);
             }

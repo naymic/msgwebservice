@@ -31,10 +31,10 @@ class MessageController extends Controller {
 
                 $jrequest = $p->fromJson("MessageWebService\JsonRequest\JsonRequest",$request);
 
-                if(!is_empty($jrequest)) {
+                if(isset($jrequest)) {
                     $this->getMessages($jrequest, $jresponse);
                 }else{
-                    throw new RequestNotValidException();
+                    throw new RequestNotValidException(self::getInternalMessage('en',10));
                 }
             }
             return $jresponse;

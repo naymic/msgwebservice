@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-    <script src="{{URL::to('/')}}/js/crud-message.js"></script>
+    <script src="{{asset('/js/crud-message.js')}}"></script>
 @endsection
 
 @section('content')
@@ -37,7 +37,7 @@
                             <button  onClick='location.href ="{{URL::to('/')}}/message/{{$message->id}}/edit";' type="button" class="btn btn-default">Edit</button>
                         </td>
                         <td>
-                            <form  method="post" action="{{URL::to('/')}}message/{{$message->id}}">
+                            <form  method="post" action="{{URL::to('/')}}/message/{{$message->id}}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 {{ method_field('DELETE') }}
                                 <input type="submit" class="btn btn-danger" value="Delete" />
@@ -54,5 +54,5 @@
         </div>
     </div>
 
-    <div><a class="btn btn-success" href="{{URL::to('/')}}/message/create/">Create a new Message</a> </div>
+    <div><button class="btn btn-success" onClick='location.href ="{{URL::to('/')}}/message/create/"'>Create a new Message</button> </div>
 @endsection

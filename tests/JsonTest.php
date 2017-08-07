@@ -40,7 +40,7 @@ class JsonTest extends TestCase {
     function testIncompleteJsonRequest(){
         $response = new JsonResponse();
         $msgController = new MessageController();
-        $json = '{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}';
+        $json = '{"appid":1,"appoken":"msgIstSoCool!-","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}';
         $msgController->processRequest($json, $response);
 
         self::assertFalse($response->getSuccess());
