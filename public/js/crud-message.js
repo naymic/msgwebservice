@@ -7,7 +7,7 @@ $(document).ready(function(){
     $('#application_id').change(function(){
         $.ajax({
             type: 'GET',
-            url: '/ajax/message/application/'+$('#application_id').val(),
+            url: 'https://localhost/msgwebservice/public/ajax/message/application/'+$('#application_id').val(),
             success: function (data) {
                 $('#modul_id').html(data);
             }
