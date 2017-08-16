@@ -74,13 +74,26 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Messages <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="/message">List Messages</a>
+                                        <a href="/message/create">Create new Message</a>
+                                    </li>
+                                </ul>
+                            </li>
                         @endif
                     </ul>
                 </div>
             </div>
         </nav>
-
-        @yield('content')
+        <div style="padding:5px">
+            @yield('content')
+        </div>
     </div>
 
     <!-- Scripts -->

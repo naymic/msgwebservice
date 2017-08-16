@@ -218,6 +218,6 @@ class CrudMessageController extends Controller
 
     public function ajaxApplication($application_id){
         $modules = Module::where('applications_id', $application_id)->get();
-        return view('messages/modules_form',['modules' => $modules, 'modul_id' => 'null']);
+        return view('messages/form_select_module',['modules' => $modules, 'modul_id' => 'null']);
     }
 }
