@@ -4,12 +4,11 @@
 
 $(document).ready(function(){
 
-
     $('#application_id').change(function(){
         var getUrl = window.location;
         $.ajax({
             type: 'GET',
-            url: getUrl .protocol + '//' + getUrl.host +'/msgwebservice/public/ajax/message/application/'+$('#application_id').val(),
+            url: '/ajax/message/application/'+$('#application_id').val(),
             success: function (data) {
                 $('#modul_id').html(data);
             }
