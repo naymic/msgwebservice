@@ -16,9 +16,35 @@ use MessageWebService\Exceptions\RequestNotValidException;
 use MessageWebService\Http\Controllers\MessageController;
 
 
+
+
 Auth::routes();
 
 Route::group(['middleware' =>  'auth'], function(){
+
+    /** Aplication */
+    Route::get('/application', 'CrudApplicationController@index');
+    Route::get('/application', 'CrudApplicationController@index');
+    Route::get('/application/create', 'CrudApplicationController@create');
+    Route::post('/application', 'CrudApplicationController@store');
+    Route::get('/application/{id}', 'CrudApplicationController@show');
+    Route::get('/application/{id}/edit', 'CrudApplicationController@edit');
+    Route::put('/application/{id}', 'CrudApplicationController@update');
+    Route::delete('/message/{id}', 'CrudApplicationController@destroy');
+
+
+    /** Modules */
+    Route::get('/module', 'CrudModuleController@index');
+    Route::get('/module', 'CrudModuleController@index');
+    Route::get('/module/create', 'CrudModuleController@create');
+    Route::post('/module', 'CrudModuleController@store');
+    Route::get('/module/{id}', 'CrudModuleController@show');
+    Route::get('/module/{id}/edit', 'CrudModuleController@edit');
+    Route::put('/module/{id}', 'CrudModuleController@update');
+    Route::delete('/module/{id}', 'CrudModuleController@destroy');
+
+
+    /** Messages */
     Route::get('/message', 'CrudMessageController@index');
     Route::get('/message/create', 'CrudMessageController@create');
     Route::post('/message', 'CrudMessageController@store');
@@ -37,9 +63,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/home/{token}', 'HomeController@index');
 
 
-Route::get('/phpinfo', function(){
-    return phpinfo();
-});
+
 
 Route::get('/admin', function(){
 
@@ -59,10 +83,13 @@ Route::get('/{request}', function ($request) {
 });
 
 Route::get('/', function(){
-    $jresponse = new JSonResponse();
+
+    return View::make('welcome');
+
+    /*$jresponse = new JSonResponse();
     $jresponse->addError(new RequestNotValidException(MessageController::getInternalMessage('en', 10)));
 
-    return response()->json($jresponse, $jresponse->getHtmlErrorCodes()[0]);
+    return response()->json($jresponse, $jresponse->getHtmlErrorCodes()[0]);*/
 });
 
 
