@@ -51,7 +51,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #464548;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -106,6 +106,9 @@
                 <div class="title m-b-md">
                     Web Service Documentation
                 </div>
+
+                <span class="links" ><a href="{{URL('/')}}/message">Message CRUD</a></span>
+                <span class="links" ><a href="{{URL('/')}}/{}">Web Service</a></span>
 
                 <h1> Web Service</h1>
 
