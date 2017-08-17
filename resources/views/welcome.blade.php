@@ -63,6 +63,34 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .domain_name{
+                color: #ffb73e;
+            }
+
+            .appid{
+                color: #7f7a03;
+            }
+
+            .apptoken{
+                color: #007f02;
+            }
+
+            .modulid{
+                color: #007e7f;
+            }
+
+            .applang{
+                color: #00087f;
+            }
+
+            .requitems{
+                color: #7c007f;
+            }
+
+            .requitemsreplace{
+                color: #7f030c;
+            }
         </style>
     </head>
     <body>
@@ -82,7 +110,7 @@
                 <h1> Web Service</h1>
 
 
-                <h4>Basic Json request: {{'<domain name>/{"appid":<appid>,"apptoken":"<token>","modulid":<modul id>,"applang":"<app language shortform>","requitems":<array of message ids>,"requitemsreplace":<array for replacement or empty>}'}}</h4>
+                <h4>Basic Json request: {{URL('/')}}</span>{<span class="appid">{{'"appid":<appid>'}}</span>,<span class="apptoken">{{'"apptoken":"<token>"'}}</span>,<span class="modulid">{{'"modulid":<modul id>'}}</span>,<span class="applang">{{'"applang":"<app language shortform>"'}}</span>,<span class="requitems">{{'"requitems":<array of message ids>'}}</span>,<span class="requitemsreplace">{{'"requitemsreplace":<array for replacement or empty>'}} }</span></h4>
 
                 <h1>Message CRUD</h1>
 
@@ -96,16 +124,16 @@
                 <h1>Example usage</h1>
 
                 <h2>Get one message</h2>
-                <h4>{{'{"appid":1,"apptoken":"msgwsiscool!","modulid":1,"applang":"pt","requitems":[1],"requitemsreplace":[]}'}}</h4>
+                <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1],"requitemsreplace":[]}'> {{URL('/').'/{"appid":1,"apptoken":"msgwsiscool!","modulid":1,"applang":"pt","requitems":[1],"requitemsreplace":[]}'}}</a></h4>
 
-                <h2> Get multiples messges
-                    <h4>{{'{"appid":1,"apptoken":"msgwsiscool!","modulid":1,"applang":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}'}}</h4>
+                <h2> Get multiples messges</h2>
+                <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}''>{{URL('/').'/{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}'}}</a></h4>
 
                 <h2> Replace inside messages
-                <h4>{{'{"appid":1,"apptoken":"msgwsiscool!","modulid":1,"applang":"pt","requitems":[1,2,43],"requitemsreplace":[[],[],["test1", "test2"]]}'}}</h4>
+                <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1,2,43],"requitemsreplace":[[],[],["test1", "test2"]]}'>{{URL('/').'{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1,2,43],"requitemsreplace":[[],[],["test1", "test2"]]}'}}</a></h4>
 
                 <h2>Incomplete request
-                <h4>{{'{"appid":1,"appoken":"msgwsiscool!","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}'}}</h4>
+                    <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"appoken":"msgwsiscool!-","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}''>{{URL('/').'{"appid":1,"appoken":"msgwsiscool!-","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}'}}</a></h4>
 
             </div>
         </div>
