@@ -78,13 +78,13 @@ Route::get('/{request}', function ($request) {
 
     if(isset($jresponse->getHtmlErrorCodes()[0])) {
         return response()->json($jresponse, $jresponse->getHtmlErrorCodes()[0],JSON_UNESCAPED_UNICODE)
-            ->header('Content-Type', 'text/html; charset=utf-8')
+            ->header('Content-Type', 'application/json; charset=utf-8')
             ->header('accept-charset', 'utf-8');;
     }else{
 
 
         return response()->json($jresponse, 200,[],JSON_UNESCAPED_UNICODE)
-            ->header('Content-Type', 'text/html; charset=utf-8')
+            ->header('Content-Type', 'application/json; charset=utf-8')
             ->header('accept-charset', 'utf-8');
     }
 });
