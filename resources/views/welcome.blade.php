@@ -127,16 +127,16 @@
                 <h1>Example usage</h1>
 
                 <h2>Get one message</h2>
-                <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1],"requitemsreplace":[]}'> {{URL('/').'/{"appid":1,"apptoken":"msgwsiscool!","modulid":1,"applang":"pt","requitems":[1],"requitemsreplace":[]}'}}</a></h4>
+                <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applang":"pt","requitems":[1],"requitemsreplace":[]}'> {{URL('/').'/{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1],"requitemsreplace":[]}'}}</a></h4>
 
                 <h2> Get multiples messges</h2>
-                <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}''>{{URL('/').'/{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}'}}</a></h4>
+                <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applang":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}''>{{URL('/').'/{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}'}}</a></h4>
 
                 <h2> Replace inside messages
-                <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1,2,43],"requitemsreplace":[[],[],["test1", "test2"]]}'>{{URL('/').'{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1,2,43],"requitemsreplace":[[],[],["test1", "test2"]]}'}}</a></h4>
+                <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"apptoken":"msgIstSoCool!-","modulid":1,"applang":"pt","requitems":[1,2,43],"requitemsreplace":[[],[],["test1", "test2"]]}'>{{URL('/').'{"appid":1,"apptoken":"msgwsiscool!-","modulid":1,"applang":"pt","requitems":[1,2,43],"requitemsreplace":[[],[],["test1", "test2"]]}'}}</a></h4>
 
                 <h2>Incomplete request
-                    <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"appoken":"msgwsiscool!-","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}''>{{URL('/').'{"appid":1,"appoken":"msgwsiscool!-","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}'}}</a></h4>
+                    <h4><a class="links" target="_blank" href='{{URL('/')}}/{"appid":1,"appoken":"msgIstSoCool!-","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}''>{{URL('/').'{"appid":1,"appoken":"msgwsiscool!-","modulid":1,"applng":"pt","requitems":[1,2,3],"requitemsreplace":[[],[],[]]}'}}</a></h4>
 
             </div>
         </div>

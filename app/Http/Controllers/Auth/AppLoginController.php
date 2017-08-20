@@ -52,6 +52,8 @@ class AppLoginController{
             $this->setLogged(true);
 
         }catch (AutenticationException $ae){
+            $this->setToken(null);
+            $this->setLogged(false);
             $response->addError($ae);
         }
     }

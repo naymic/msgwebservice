@@ -2,6 +2,7 @@
 
 namespace MessageWebService\Http\Controllers;
 
+use MessageWebService\Application;
 use MessageWebService\Exceptions\EmptyRequestException;
 use MessageWebService\Exceptions\MessageNotFoundException;
 use MessageWebService\Exceptions\MyException;
@@ -54,8 +55,9 @@ class MessageController extends Controller {
 
             AppLoginController::getInstance()->identify($response, $request);
 
-
-            return $this->getMessagesFromRequest($response, $request);
+            if(AppLoginController::getInstance()->isLogged()) {
+                return $this->getMessagesFromRequest($response, $request);
+            }
         }catch (EmptyRequestException $ere){
             $response->addInfoMessage($ere->getMessage());
         }catch(MyException $afe){
@@ -199,7 +201,23 @@ class MessageController extends Controller {
         return $lang;
     }
 
+    private function checkAppToken(JSonRequest $request, JsonResponse &$response){
+        $app = Application::where([
+            ['appid', $request->getAppId()],
+            ['token', $request->getAppToken()]
+        ])->get();
 
+        try {
+            if ($app->count() == 1) {
+                return true;
+            } else {
+                throw new TokenDismatchException();
+                return false;
+            }
+        }catch(TokenDismatchException $me){
+            $response->addError($me);
+        }
+    }
 
 
 }

@@ -78,7 +78,7 @@ Route::get('/{request}', function ($request) {
     if(isset($jresponse->getHtmlErrorCodes()[0])) {
         return response()->json($jresponse, $jresponse->getHtmlErrorCodes()[0]);
     }else{
-        return response()->json($jresponse, 200, ['Content-Type' => 'application/json; charset=utf-8' ]);
+        return response()->json($jresponse, 200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 });
 
